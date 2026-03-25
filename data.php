@@ -5,4 +5,5 @@ $data = [
     ['id'=>3,'nama'=>'Buah Pinggang','gambar'=>'buah_pinggang.jpg','harga'=>['pek_mini'=>2.00,'kecil'=>22.00,'besar'=>44.00]],
     ['id'=>4,'nama'=>'Tart Nanas','gambar'=>'tart_nanas.png','harga'=>['pek_mini'=>2.00,'kecil'=>25.00,'besar'=>50.00]],
 ];
+
 ?>

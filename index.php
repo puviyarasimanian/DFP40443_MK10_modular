@@ -24,4 +24,6 @@ echo "<h2>Menu tidak ditemukan</h2>";
 }
 
 include "footer.php";
+
+
 ?>

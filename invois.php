@@ -30,3 +30,4 @@ $data=$_SESSION['invois'];
 </table>
 
 <button onclick="window.print()">Cetak</button>
+

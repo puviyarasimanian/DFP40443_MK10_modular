@@ -1,24 +1,12 @@
-<?php
-$data = [
-    ['gambar'=>'kuih_semperit.png'],
-    ['gambar'=>'biskut_mazola.png'],
-    ['gambar'=>'buah_pinggang.jpg'],
-    ['gambar'=>'tart_nanas.png'],
-];
-?>
+<?php include "data.php"; ?>
 
-<h1 class="page-title">Selamat Datang</h1>
+<h1>Selamat Datang</h1>
 
-<div class="gallery-row">
-<?php foreach ($data as $produk): ?>
-    <img src="gambar/<?= $produk['gambar'] ?>" class="gallery-thumb">
-<?php endforeach; ?>
+<div style="display:flex; gap:20px;">
+    <?php foreach ($data as $produk): ?>
+        <div>
+            <img src="gambar/<?= $produk['gambar'] ?>" width="120">
+            <p><?= $produk['nama'] ?></p>
+        </div>
+    <?php endforeach; ?>
 </div>
-
-<div class="instructions-section">
-<h3>Cara Membuat Tempahan</h3>
-<p>
-Klik Tempah → isi → tekan Teruskan → cetak invois.
-</p>
-</div>
-

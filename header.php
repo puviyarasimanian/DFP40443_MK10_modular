@@ -2,49 +2,22 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biskut Klasik</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Questrial', sans-serif;
-            margin: 0;
-            background: #f0f2f5;
-        }
-
-        .header {
-            background: #333;
-            padding: 15px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        a {
-            color: white;
-            margin-left: 15px;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: orange;
-        }
-
-        .container {
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-<div class="header">
-    <h2>Biskut Klasik</h2>
-    <div>
-        <a href="index.php?menu=utama">Utama</a>
-        <a href="index.php?menu=tempah">Tempah</a>
-        <a href="index.php?menu=invois">Invois</a>
-    </div>
-</div>
+<body class="page-body">
 
 <div class="container">
+
+    <div class="header-wrapper">
+        <h2 class="site-title">Biskut Klasik</h2>
+
+        <nav class="nav-menu">
+            <a href="index.php?menu=utama" class="nav-link">Utama</a>
+            <a href="index.php?menu=tempah" class="nav-link">Tempah</a>
+            <a href="index.php?menu=invois" class="nav-link">Invois</a>
+        </nav>
+    </div>

@@ -1,9 +1,7 @@
 <?php
-include "data.php";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nama = $_POST['nama_pelanggan'];
+    $nama = htmlspecialchars($_POST['nama_pelanggan']);
     $tempahan = $_POST['tempahan'];
 
     $items = [];
@@ -15,10 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($p['id'] == $id) {
 
                 foreach ($saiz_list as $saiz => $qty) {
+
                     if ($qty > 0) {
 
                         $harga = $p['harga'][$saiz];
-                        $jumlah = $harga * $qty;
+                        $jumlah = $qty * $harga;
 
                         $items[] = [
                             'nama' => $p['nama'],
@@ -34,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    $_SESSION['invois'] = [
+    $_SESSION['invois_data'] = [
         'nama' => $nama,
         'items' => $items,
         'total' => $total
@@ -45,21 +44,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h1>Tempah</h1>
+<h1>Borang Tempahan</h1>
 
 <form method="POST">
-<?php foreach ($data as $p): ?>
-    <h3><?= $p['nama'] ?></h3>
+    <?php foreach ($data as $produk): ?>
 
-    <?php foreach ($p['harga'] as $saiz => $harga): ?>
-        <?= $saiz ?> (RM <?= $harga ?>)
-        <input type="number" name="tempahan[<?= $p['id'] ?>][<?= $saiz ?>]" value="0"><br>
+        <h3><?= $produk['nama'] ?></h3>
+
+        <?php foreach ($produk['harga'] as $saiz => $harga): ?>
+
+            <?= $saiz ?> (RM<?= $harga ?>)
+            <input type="number" name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]" value="0">
+
+            <br>
+
+        <?php endforeach; ?>
+
     <?php endforeach; ?>
 
-<?php endforeach; ?>
+    <input type="text" name="nama_pelanggan" placeholder="Nama" required>
 
-<br>
-Nama: <input type="text" name="nama_pelanggan" required>
-<br><br>
-<button type="submit">Submit</button>
+    <button type="submit">Teruskan</button>
 </form>

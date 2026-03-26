@@ -1,10 +1,13 @@
 <?php
 session_start();
+
 $menu = $_GET['menu'] ?? 'utama';
 
+include "data.php";
 include "header.php";
 
 switch ($menu) {
+
     case "utama":
         include "utama.php";
         break;
@@ -18,7 +21,7 @@ switch ($menu) {
         break;
 
     default:
-        echo "<h2>Menu tidak ditemukan</h2>";
+        echo "<h2 style='text-align:center;'>Menu tidak ditemukan</h2>";
 }
 
 include "footer.php";

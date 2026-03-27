@@ -1,68 +1,52 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<h1 class="page-title">Borang Tempahan</h1>
 
-    $nama = htmlspecialchars($_POST['nama_pelanggan']);
-    $tempahan = $_POST['tempahan'];
+<form method="POST" action="tempah_process.php">
 
-    $items = [];
-    $total = 0;
+    <div class="product-grid">
 
-    foreach ($tempahan as $id => $saiz_list) {
+        <?php foreach ($data as $produk): ?>
 
-        foreach ($data as $p) {
-            if ($p['id'] == $id) {
+            <div class="product-card">
 
-                foreach ($saiz_list as $saiz => $qty) {
+                <h3><?= htmlspecialchars($produk['nama']) ?></h3>
 
-                    if ($qty > 0) {
+                <?php foreach ($produk['harga'] as $saiz => $harga): ?>
 
-                        $harga = $p['harga'][$saiz];
-                        $jumlah = $qty * $harga;
+                    <div class="product-option">
 
-                        $items[] = [
-                            'nama' => $p['nama'],
-                            'saiz' => $saiz,
-                            'qty' => $qty,
-                            'jumlah' => $jumlah
-                        ];
+                        <label>
+                            <?= ucwords(str_replace('_', ' ', $saiz)) ?>
+                            (RM <?= number_format($harga, 2) ?>)
+                        </label>
 
-                        $total += $jumlah;
-                    }
-                }
-            }
-        }
-    }
+                        <input 
+                            type="number"
+                            name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]"
+                            value="0"
+                            min="0"
+                        >
 
-    $_SESSION['invois_data'] = [
-        'nama' => $nama,
-        'items' => $items,
-        'total' => $total
-    ];
+                    </div>
 
-    header("Location: index.php?menu=invois");
-    exit();
-}
-?>
+                <?php endforeach; ?>
 
-<h1>Borang Tempahan</h1>
-
-<form method="POST">
-    <?php foreach ($data as $produk): ?>
-
-        <h3><?= $produk['nama'] ?></h3>
-
-        <?php foreach ($produk['harga'] as $saiz => $harga): ?>
-
-            <?= $saiz ?> (RM<?= $harga ?>)
-            <input type="number" name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]" value="0">
-
-            <br>
+            </div>
 
         <?php endforeach; ?>
 
-    <?php endforeach; ?>
+    </div>
 
-    <input type="text" name="nama_pelanggan" placeholder="Nama" required>
+    <br>
+
+    <input 
+        type="text" 
+        name="nama_pelanggan" 
+        placeholder="Masukkan nama anda" 
+        required
+    >
+
+    <br><br>
 
     <button type="submit">Teruskan</button>
+
 </form>
